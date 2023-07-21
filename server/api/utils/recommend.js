@@ -1,8 +1,10 @@
 const { spawn } = require('child_process');
+const { Buffer } = require('buffer');
 
 function callPythonScript(input) {
-    // const python = spawn('python', ['./api/utils/py_scripts/example.py', input]);
-    const python = spawn('python', ['py_scripts/example.py', input]);
+    const base64input = Buffer.from(JSON.stringify(input)).toString('base64');
+    // const python = spawn('python', ['./api/utils/py_scripts/recommend_news.py', base64input]);
+    const python = spawn('python', ['py_scripts/recommend_news.py', base64input]);
 
     python.stdout.on('data', (data) => {
         console.log(`Python script output: ${data}`);
@@ -18,5 +20,7 @@ function callPythonScript(input) {
 }
 
 // Use this function wherever you want to run your Python script
-// For example, let's assume that we want to find recommendations for the movie "Interstellar"
-callPythonScript("test");
+callPythonScript({
+    userName: "Brandon",
+    categories: ["sports", "politics", "entertainment", "business", "technology", "science"],
+});
