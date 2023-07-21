@@ -46,4 +46,24 @@ router.post("/signup", (req, res, test) => {
     });
 });
 
+router.delete("/:userID", (req, res, next) => {
+  const userID = req.params.userID;
+  User.deleteOne({
+    _id: userID,
+  })
+    .exec()
+    .then((result) => {
+      console.log(result);
+      res.status(200).json({
+        message: "User deleted!"
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        error: err,
+      });
+    });
+});
+
 module.exports = router;
