@@ -7,7 +7,7 @@ const userPreferenceShema = mongoose.Schema({
   PreferredColor: { type: [String], required: true },
   PreferredBrand: { type: [String], required: true },
   PreferredType: { type: [String], required: true },
-  PreferredPriceRange: { type: [Number], required: true },
+  PreferredPriceRange: { type: [Number], required: true },  // [low, high]
 });
 
 // convert Schema to a Model

@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 // Connect end points, those are relative path to products.js and orders.js
 const userRoutes = require("./api/routes/users");
 const sneakerRoutes = require("./api/routes/sneakers");
+const userPreferenceRoutes = require("./api/routes/userPreferences");
 
 // connect to MongoDB database
 main().catch((err) => console.log(err));
@@ -39,6 +40,7 @@ app.use((req, res, next) => {
 // MAIN PART: routes to handle middlewares
 app.use("/users", userRoutes);
 app.use("/sneakers", sneakerRoutes);
+app.use("/userPreferences", userPreferenceRoutes);
 
 // handle error requests that reach this line, because all valid HTTP requests should be handled by endpoints Middleware
 app.use((req, res, next) => {

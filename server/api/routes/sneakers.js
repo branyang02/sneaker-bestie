@@ -10,9 +10,9 @@ const Sneaker = require("../models/sneaker");
 router.post("/add-sneaker", async (req, res, next) => {
   /*
   example request body:
-  {
-    "productId": "bf364c53-eb77-4522-955c-6a6ce952cc6f"
-  }
+    {
+      "productId": "bf364c53-eb77-4522-955c-6a6ce952cc6f"
+    }
   */
 
   const productId = req.body.productId;
