@@ -40,7 +40,7 @@ app.use((req, res, next) => {
 // MAIN PART: routes to handle middlewares
 app.use("/users", userRoutes);
 app.use("/sneakers", sneakerRoutes);
-app.use("/userPreferences", userPreferenceRoutes);
+app.use("/user-preferences", userPreferenceRoutes);
 
 // handle error requests that reach this line, because all valid HTTP requests should be handled by endpoints Middleware
 app.use((req, res, next) => {

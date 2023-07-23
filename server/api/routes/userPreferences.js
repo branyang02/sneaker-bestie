@@ -5,9 +5,11 @@ const utilFunctions = require("../utils/util");
 const fetch = require("node-fetch");
 
 const UserPreference = require("../models/userPreference");
+const checkAuth = require("../middleware/check-auth");
 /*
   example request body:
     {
+      "userID": "60b9b4b3e6b3a83a3c9b0b1a",
       "PreferredColor": ["blue", "red"],
       "PreferredBrand": ["Nike", "Adidas"],
       "PreferredType": ["sneakers", "hoodies"],
@@ -16,7 +18,7 @@ const UserPreference = require("../models/userPreference");
 */
 
 // ADD USER PREFERENCE TO DATABASE
-router.post("/add-user-preference", (req, res, next) => {
+router.post("/add-user-preference", checkAuth, (req, res, next) => {
   // obtain fields from request body
   const {
     userID,
@@ -49,9 +51,9 @@ router.post("/add-user-preference", (req, res, next) => {
 });
 
 // VIEW USER PREFERENCE FROM DATABASE
-router.get("/view-user-preference/:userID", (req, res, next) => {
+router.get("/view-user-preference/:userID", checkAuth, (req, res, next) => {
   const userID = req.params.userID;
-  UserPreference.findById(userID)
+  UserPreference.findOne({ userID: userID })
     .exec()
     .then((doc) => {
       if (doc) {
