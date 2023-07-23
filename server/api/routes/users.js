@@ -103,15 +103,8 @@ router.post("/login", (req, res, next) => {
 });
 
 // DELETE USER
-router.delete("/:userID", checkAuth, (req, res, next) => {
-  const userID = req.params.userID;
-
-  // Check if the user is the same user or an admin
-  if (req.user._id !== userID && !req.user.isAdmin) {
-    return res.status(403).json({
-      error: "You don't have permission to perform this operation",
-    });
-  }
+router.delete("/delete", checkAuth, (req, res, next) => {
+  const userID = req.user.userId;
 
   User.deleteOne({
     _id: userID,
