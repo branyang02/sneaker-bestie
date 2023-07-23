@@ -4,11 +4,19 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const utilFunctions = require("../utils/util");
 const jwt = require("jsonwebtoken");
+const checkAuth = require("../middleware/check-auth");
 
 const User = require("../models/user");
 
 // SIGNUP
 router.post("/signup", (req, res, test) => {
+  /*
+    example request body:
+      {
+        "email": "brandonbrid2100@gmail.com",
+        "password": "admin"
+      }
+  */
   User.find({ email: req.body.email })
     .exec()
     .then((user) => {
@@ -47,6 +55,13 @@ router.post("/signup", (req, res, test) => {
 
 // LOGIN
 router.post("/login", (req, res, next) => {
+  /*
+    example request body:
+      {
+        "email": "brandonbrid2100@gmail.com",
+        "password": "admin"
+      }
+  */
   User.find({ email: req.body.email })
     .exec()
     .then((user) => {
@@ -87,7 +102,7 @@ router.post("/login", (req, res, next) => {
 });
 
 // DELETE USER
-router.delete("/:userID", (req, res, next) => {
+router.delete("/:userID", checkAuth, (req, res, next) => {
   const userID = req.params.userID;
   User.deleteOne({
     _id: userID,
