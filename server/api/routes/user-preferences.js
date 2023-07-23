@@ -4,12 +4,22 @@ const mongoose = require("mongoose");
 const utilFunctions = require("../utils/util");
 const fetch = require("node-fetch");
 
-const viewHistory = require("../models/view_history");
+const UserPreference = require("../models/user_preference");
 const checkAuth = require("../middleware/check-auth");
 
 // ADD USER PREFERENCE TO DATABASE
+/*
+    example request body:
+      {
+        "PreferredColor": ["blue", "red"],
+        "PreferredBrand": ["Nike", "Adidas"],
+        "PreferredType": ["sneakers", "hoodies"],
+        "PreferredPriceRange": [100, 200]
+      }
+  */
 router.post("/add-preferences", checkAuth, (req, res, next) => {
   // Obtain fields from request body
+
   const { PreferredColor, PreferredBrand, PreferredType, PreferredPriceRange } =
     req.body;
 
@@ -56,8 +66,7 @@ router.get("/view-preferences", checkAuth, (req, res, next) => {
 });
 
 // UPDATE USER PREFERENCE IN DATABASE
-router.patch("/update-preferences", checkAuth, (req, res, next) => {
-  /*
+/*
     example request body:
       [
         {
@@ -75,6 +84,7 @@ router.patch("/update-preferences", checkAuth, (req, res, next) => {
         }
       ]
   */
+router.patch("/update-preferences", checkAuth, (req, res, next) => {
   const userID = req.user.userId;
   const updateOps = {};
   for (const ops of req.body) {
