@@ -8,13 +8,14 @@ const userRoutes = require("./api/routes/users");
 const sneakerRoutes = require("./api/routes/sneakers");
 const userPreferenceRoutes = require("./api/routes/user-preferences");
 const viewHistoryRoutes = require("./api/routes/view-history");
+const recommendationsRoutes = require("./api/routes/recommendations");
 
 // connect to MongoDB database
 main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(
     "mongodb+srv://jqm9ba:" +
-    process.env.MongoDB_PASSWORD +
+      process.env.MongoDB_PASSWORD +
       "@cluster0.yiy71nq.mongodb.net/?retryWrites=true&w=majority"
   );
 }
@@ -43,6 +44,7 @@ app.use("/users", userRoutes);
 app.use("/sneakers", sneakerRoutes);
 app.use("/user-preferences", userPreferenceRoutes);
 app.use("/view-history", viewHistoryRoutes);
+app.use("/recommendations", recommendationsRoutes);
 
 // handle error requests that reach this line, because all valid HTTP requests should be handled by endpoints Middleware
 app.use((req, res, next) => {
