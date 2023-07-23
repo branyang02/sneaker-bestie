@@ -37,11 +37,7 @@ router.post("/signup", (req, res, test) => {
                   result,
                 });
               })
-              .catch((err) => {
-                res.status(500).json({
-                  error: err,
-                });
-              });
+              .catch(utilFunctions.throwError(res));
           }
         });
       }
