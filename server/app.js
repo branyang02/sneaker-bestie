@@ -12,7 +12,7 @@ main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(
     "mongodb+srv://jqm9ba:" +
-      "news" +
+    process.env.MongoDB_PASSWORD +
       "@cluster0.yiy71nq.mongodb.net/?retryWrites=true&w=majority"
   );
 }

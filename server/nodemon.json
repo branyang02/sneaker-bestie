@@ -1,6 +1,9 @@
 {
     "env": 
     {
-        "JWT_KEY": "secret"
+        "JWT_KEY": "secret",
+        "PORT": 1234,
+        "MongoDB_PASSWORD": "news",
+        "STOCK_X_API_KEY": "todo"        
     }
 }
