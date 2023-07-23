@@ -1,7 +1,8 @@
 {
     "env": 
     {
-        "JWT_KEY": "secret",
+        "JWT_KEY": "3509a80136da637465d646529fb3d26a62d1ba31286e7db06c7bc8dd2127806f1274f8ce6f0c3f030e93b28be017a57daeab9403182bbf63efcc5eba6ea534de",
+        "REFRESH_TOKEN_SECRET": "fba9d40d46bc77f8d8d375de262ff9ae4967688efd46f31687097418b895cc44d347362b4126880eb758442b3579cf56b50f87d59ad21991f6c0018ac9c0cd2a",
         "PORT": 1234,
         "MongoDB_PASSWORD": "news",
         "STOCK_X_API_KEY": "todo"        
