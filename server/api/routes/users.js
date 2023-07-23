@@ -90,6 +90,7 @@ router.post("/login", (req, res, next) => {
           );
           return res.status(200).json({
             message: "Authentication Successful",
+            userid: user[0]._id,
             token: token,
           });
         }
@@ -109,7 +110,11 @@ router.delete("/:userID", checkAuth, (req, res, next) => {
   })
     .exec()
     .then((result) => {
-      console.log(result);
+      if (result.deletedCount === 0) {
+        return res.status(404).json({
+          error: "User not found",
+        });
+      }
       res.status(200).json({
         message: "User deleted!",
       });
