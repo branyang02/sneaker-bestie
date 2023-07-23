@@ -40,7 +40,7 @@ router.post("/add-sneaker", async (req, res, next) => {
   // const data = await resp.text();
   // dummy data
   const data = {
-    productId: "bf364c53-eb77-4522-955c-6a6ce952cc6fHAHA",
+    productId: "bf364c53-eb77-4522-955c-6a6ce952cc6f",
     urlKey: "purple-hand-bag-leather",
     styleId: "BY9109",
     productType: "handbags",
