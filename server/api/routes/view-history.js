@@ -76,7 +76,7 @@ router.get("/all-view-history", checkAuth, (req, res, next) => {
     .exec()
     .then((viewHistory) => {
       if (!viewHistory) {
-        return res.status(404).json({ error: "View History not found" });
+        return res.status(404).json({ error: "You have no view history." });
       } else {
         res.status(200).json({
           viewHistory,
