@@ -6,6 +6,10 @@ const fetch = require("node-fetch");
 
 const UserPreference = require("../models/userPreference");
 const checkAuth = require("../middleware/check-auth");
+
+// ADD USER PREFERENCE TO DATABASE
+router.post("/add-preferences", checkAuth, (req, res, next) => {
+  // Obtain fields from request body
 /*
   example request body:
     {
