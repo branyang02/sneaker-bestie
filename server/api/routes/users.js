@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 
 const User = require("../models/user");
 
+// SIGNUP
 router.post("/signup", (req, res, test) => {
   User.find({ email: req.body.email })
     .exec()
@@ -44,6 +45,7 @@ router.post("/signup", (req, res, test) => {
     });
 });
 
+// LOGIN
 router.post("/login", (req, res, next) => {
   User.find({ email: req.body.email })
     .exec()
@@ -84,6 +86,7 @@ router.post("/login", (req, res, next) => {
     .catch(utilFunctions.throwError(res));
 });
 
+// DELETE USER
 router.delete("/:userID", (req, res, next) => {
   const userID = req.params.userID;
   User.deleteOne({
