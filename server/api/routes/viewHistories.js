@@ -4,21 +4,12 @@ const mongoose = require("mongoose");
 const utilFunctions = require("../utils/util");
 const fetch = require("node-fetch");
 
-const UserPreference = require("../models/user_preference");
+const viewHistory = require("../models/view_history");
 const checkAuth = require("../middleware/check-auth");
 
 // ADD USER PREFERENCE TO DATABASE
 router.post("/add-preferences", checkAuth, (req, res, next) => {
   // Obtain fields from request body
-  /*
-    example request body:
-      {
-        "PreferredColor": ["blue", "red"],
-        "PreferredBrand": ["Nike", "Adidas"],
-        "PreferredType": ["sneakers", "hoodies"],
-        "PreferredPriceRange": [100, 200]
-      }
-  */
   const { PreferredColor, PreferredBrand, PreferredType, PreferredPriceRange } =
     req.body;
 
