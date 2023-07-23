@@ -141,5 +141,23 @@ router.get("/view-sneaker/:sneakerId", (req, res, next) => {
     .catch(utilFunctions.throwError(res));
 });
 
+/*
+TODO:
+
+Users table: This will store information about the users. Columns could include UserID, Name, Email, Password (hashed and salted), Gender, Age, etc.
+
+Sneakers table: This will store information about the sneakers. Columns could include SneakerID, Brand, Model, Color, Size, Price, Release Date, ImageURL, etc.
+
+UserPreferences table: This will store information about user's preferences. Columns could include UserID, PreferredBrand, PreferredColor, PreferredSize, etc.
+
+PurchaseHistory table: This will store information about user's purchase history. Columns could include PurchaseID, UserID, SneakerID, PurchaseDate, Price, etc.
+
+Ratings table: This will store information about the ratings given by users to the sneakers. Columns could include RatingID, UserID, SneakerID, Rating, Review.
+
+Recommendations table: This table will store the recommendations generated for each user. Columns might include RecommendationID, UserID, SneakerID, RecommendationScore, DateTime.
+
+SneakerDetails table: This table would store the description and other details of the sneakers. Columns might include SneakerID, Description, Material, Weight, Category (like running, basketball, casual etc).
+*/
+
 // EXPORT ROUTER
 module.exports = router;
