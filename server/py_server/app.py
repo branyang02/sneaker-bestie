@@ -62,7 +62,18 @@ def recommend():
         user_view_history = None
 
     # Recommend
-    return jsonify({"example": "sample_recommendation"})
+    return jsonify(
+        [
+            {
+                "_product_id": "5f8b9d7b9d6b2e1d9c6c3b9a",
+                "score": 0.5,
+            },
+            {
+                "_product_id": "5f8b9d7b9d6b2e1d9c6c3b9b",
+                "score": 0.4,
+            },
+        ]
+    )
 
 
 if __name__ == "__main__":
