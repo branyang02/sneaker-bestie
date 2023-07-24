@@ -30,9 +30,12 @@ router.post("/add-view-history", checkAuth, (req, res, next) => {
             if (!sneaker) {
               return res.status(404).json({ error: "Sneaker not found" });
             } else {
-              ViewHistory.updateOne({
-                $addToSet: { viewedSneakers: productId },
-              })
+              ViewHistory.updateOne(
+                { userID: userID },
+                {
+                  $addToSet: { viewedSneakers: productId },
+                }
+              )
                 .then((result) => {
                   res
                     .status(200)
