@@ -18,32 +18,45 @@ const checkAuth = require("../middleware/check-auth");
       }
   */
 router.post("/add-preferences", checkAuth, (req, res, next) => {
-  // Obtain fields from request body
-
-  const { PreferredColor, PreferredBrand, PreferredType, PreferredPriceRange } =
-    req.body;
-
   // Obtain the userID from the authenticated user
   const userID = req.user.userId;
+  UserPreference.findOne({ userID: userID })
+    .exec()
+    .then((userPreference) => {
+      if (userPreference) {
+        return res.status(409).json({
+          message: "User preferences already exist",
+        });
+      } else {
+        // Obtain fields from request body
+        const {
+          PreferredColor,
+          PreferredBrand,
+          PreferredType,
+          PreferredPriceRange,
+        } = req.body;
 
-  // Create a new UserPreference object
-  const user_preference = new UserPreference({
-    _id: new mongoose.Types.ObjectId(),
-    userID: userID,
-    PreferredColor: PreferredColor,
-    PreferredBrand: PreferredBrand,
-    PreferredType: PreferredType,
-    PreferredPriceRange: PreferredPriceRange,
-  });
+        // Create a new UserPreference object
+        const user_preference = new UserPreference({
+          _id: new mongoose.Types.ObjectId(),
+          userID: userID,
+          PreferredColor: PreferredColor,
+          PreferredBrand: PreferredBrand,
+          PreferredType: PreferredType,
+          PreferredPriceRange: PreferredPriceRange,
+        });
 
-  // Save UserPreference object to database
-  user_preference
-    .save()
-    .then((result) => {
-      res.status(201).json({
-        message: "User preferences added successfully",
-        addedUserPreference: result,
-      });
+        // Save UserPreference object to database
+        user_preference
+          .save()
+          .then((result) => {
+            res.status(201).json({
+              message: "User preferences added successfully",
+              addedUserPreference: result,
+            });
+          })
+          .catch(utilFunctions.throwError(res));
+      }
     })
     .catch(utilFunctions.throwError(res));
 });
@@ -90,17 +103,28 @@ router.patch("/update-preferences", checkAuth, (req, res, next) => {
   for (const ops of req.body) {
     updateOps[ops.propName] = ops.value;
   }
-  UserPreference.updateOne({ userID: userID }, { $set: updateOps })
+  UserPreference.findOne({ userID: userID })
     .exec()
-    .then((result) => {
-      res.status(200).json({
-        message: "User preferences updated",
-        request: {
-          type: "GET",
-          url: `http://localhost:${process.env.PORT}/user-preferences/view-preferences`,
-        },
-        updatedUserPreference: result,
-      });
+    .then((doc) => {
+      if (!doc) {
+        return res.status(404).json({
+          message: "No valid entry found for current User",
+        });
+      } else {
+        UserPreference.updateOne({ userID: userID }, { $set: updateOps })
+          .exec()
+          .then((result) => {
+            res.status(200).json({
+              message: "User preferences updated",
+              request: {
+                type: "GET",
+                url: `http://localhost:${process.env.PORT}/user-preferences/view-preferences`,
+              },
+              updatedUserPreference: result,
+            });
+          })
+          .catch(utilFunctions.throwError(res));
+      }
     })
     .catch(utilFunctions.throwError(res));
 });
