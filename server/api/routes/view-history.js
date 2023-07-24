@@ -79,6 +79,7 @@ router.get("/all-view-history", checkAuth, (req, res, next) => {
         return res.status(404).json({ error: "You have no view history." });
       } else {
         res.status(200).json({
+          count: viewHistory.viewedSneakers.length,
           viewHistory,
         });
       }

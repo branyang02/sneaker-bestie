@@ -7,14 +7,13 @@ const fetch = require("node-fetch");
 const Sneaker = require("../models/sneaker");
 
 // ADD SNEAKER TO DATABASE
-router.post("/add-sneaker", async (req, res, next) => {
-  /*
+/*
   example request body:
     {
       "productId": "bf364c53-eb77-4522-955c-6a6ce952cc6f"
     }
   */
-
+router.post("/add-sneaker", async (req, res, next) => {
   const productId = req.body.productId;
 
   // Check if sneaker with given productId already exists
@@ -140,7 +139,6 @@ router.get("/view-sneaker/:sneakerId", (req, res, next) => {
     })
     .catch(utilFunctions.throwError(res));
 });
-
 
 // EXPORT ROUTER
 module.exports = router;

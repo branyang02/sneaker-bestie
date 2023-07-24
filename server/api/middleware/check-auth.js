@@ -14,6 +14,7 @@ module.exports = (req, res, next) => {
     }
     console.log("This is the user: ", user);
     req.user = user;
+    req.token = token;
     next();
   });
 };
