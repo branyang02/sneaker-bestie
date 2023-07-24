@@ -99,7 +99,7 @@ router.post("/add-sneaker", async (req, res, next) => {
 // VIEW ALL SNEAKERS
 router.get("/view-all", (req, res, next) => {
   Sneaker.find()
-    .select("productID productType title brand")
+    .select("productType title brand")
     .exec()
     .then((docs) => {
       const response = {

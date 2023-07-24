@@ -61,15 +61,21 @@ def recommend():
         print(e)
         user_view_history = None
 
+    if user_view_history is None:
+        # do a simple search based on user preferences
+        pass
+    else:
+        # recommend
+        pass
     # Recommend
     return jsonify(
         [
             {
-                "_product_id": "5f8b9d7b9d6b2e1d9c6c3b9a",
+                "sneaker_id": "64be7e2bcdaa0bdaa603d329",
                 "score": 0.5,
             },
             {
-                "_product_id": "5f8b9d7b9d6b2e1d9c6c3b9b",
+                "sneaker_id": "64be7f6fda5bca158b505dd4",
                 "score": 0.4,
             },
         ]
