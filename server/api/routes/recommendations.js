@@ -48,7 +48,7 @@ router.put("/get-new-recommendations", checkAuth, (req, res, next) => {
       // save recommendations to database
       const recommendations = response.data;
 
-      console.log(recommendations);
+      // console.log(recommendations);
       /*
       [
         { score: 0.5, sneaker_id: '5f8b9d7b9d6b2e1d9c6c3b9a' },

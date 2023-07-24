@@ -78,7 +78,7 @@ router.post("/add-sneaker", async (req, res, next) => {
   sneaker
     .save()
     .then((result) => {
-      console.log(result);
+      // console.log(result);
       res.status(201).json({
         message: "Added sneaker successfully",
         addedSneaker: {
