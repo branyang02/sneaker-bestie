@@ -9,7 +9,7 @@ const checkAuth = require("../middleware/check-auth");
 const User = require("../models/user");
 
 // SIGNUP
-  /*
+/*
     example request body:
       {
         "email": "brandonbrid2100@gmail.com",
@@ -54,7 +54,7 @@ router.post("/signup", (req, res, test) => {
 });
 
 // LOGIN
-  /*
+/*
     example request body:
       {
         "email": "brandonbrid2100@gmail.com",
@@ -62,7 +62,6 @@ router.post("/signup", (req, res, test) => {
       }
   */
 router.post("/login", (req, res, next) => {
-
   User.find({ email: req.body.email })
     .exec()
     .then((user) => {
