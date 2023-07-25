@@ -1,4 +1,4 @@
-// src/App.js
+import "./assets/styles/App.css";
 import React from "react";
 import SneakersList from "./components/SneakersList";
 
