@@ -62,20 +62,19 @@ router.put("/get-new-recommendations", checkAuth, (req, res, next) => {
         .then((result) => {
           if (result) {
             console.log("recommendation already exists");
-            
+
             Recommendation.updateOne(
               { userID: userID },
               { $set: { sneakerRecommendations: recommendations } }
             )
-            .then(() => {
-              res.status(200).json({
-                message: "Recommendation Updated Successfully",
+              .then(() => {
+                res.status(200).json({
+                  message: "Recommendation Updated Successfully",
+                });
+              })
+              .catch((err) => {
+                res.status(500).json({ error: err });
               });
-            })
-            .catch((err) => {
-              res.status(500).json({ error: err });
-            });
-
           } else {
             console.log("recommendation does not exist");
             const recommendation = new Recommendation({
