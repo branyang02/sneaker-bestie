@@ -1,4 +1,3 @@
-// src/components/SneakersList.js
 import React, { useState, useEffect } from 'react';
 import { fetchSneakers } from '../api/api';
 
