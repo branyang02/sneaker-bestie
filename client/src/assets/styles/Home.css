@@ -1,7 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
 .home-container {
   text-align: center;
   padding: 50px;
   background-color: #f4f4f4;
+  width: 100%;
+  /* height: 100vh;  */
 }
 
 .home-container h1 {
@@ -12,4 +24,9 @@
 .home-container p {
   color: #666;
   font-size: 1.2em;
+}
+
+
+.slideshow-container {
+  padding-top: 70px; /* Or however much padding you want */
 }
