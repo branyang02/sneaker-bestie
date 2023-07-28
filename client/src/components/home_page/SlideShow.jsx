@@ -1,6 +1,6 @@
 import React from "react";
 import { Slide } from "react-slideshow-image";
-import "../assets/styles/SlideShow.css";
+import "@/assets/styles/SlideShow.css";
 import "react-slideshow-image/dist/styles.css";
 
 const SlideShow = () => {

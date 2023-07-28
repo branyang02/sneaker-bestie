@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import SneakersList from "./components/SneakersList";
 import Signup from "./components/SignUp";
-import Home from "./components/Home";
+import Home from "./components/home_page/Home";
 
 function App() {
   return (

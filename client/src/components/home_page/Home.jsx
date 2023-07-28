@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../assets/styles/Home.css";
+import "@/assets/styles/Home.css";
 import SlideShow from "./SlideShow";
 import LeftPane from "./LeftPane";
 
