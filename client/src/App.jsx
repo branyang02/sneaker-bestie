@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "@/components/home_page/Home";
 import Login from "@/components/user/login";
+import UserLayout from "@/components/user/UserLayout";
 
 const Hi = () => <div>Hi</div>;
 
@@ -17,7 +18,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="/started" element={<Hi />} />
             <Route path="/calendar" element={<Hi />} />
-            <Route path="/user" element={<Login />} />
+            <Route path="/user" element={<UserLayout />} />
             <Route path="/order" element={<Hi />} />
         </Routes>
       </div>

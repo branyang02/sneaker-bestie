@@ -1,1 +1,80 @@
-/* create login css styling */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f2f2f2;
+  margin-top: -170px;  /* adjust this as per your requirement */
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.login-form label {
+  margin-bottom: 0.5em;
+  color: #333;
+  font-weight: bold;
+}
+
+.login-form input {
+  margin-bottom: 1em;
+  padding: 0.5em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.login-form input[type="submit"] {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 1em;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-form span {
+  color: red;
+}
+
+.error-message {
+  color: red;
+  font-size: 1.2em;
+  text-align: center;
+  padding: 10px;
+}
+
+.auth-container {
+  display: flex;
+  justify-content: space-between; /* Adjust this as needed */
+  width: 100%;
+  height: 100%;
+  background-color: #f2f2f2; /* Fill with a color of your choice */
+  padding: 0 34%; /* Add some padding to give space from the edges */
+}
+
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f2f2f2;
+  margin-top: -170px;  /* adjust this as per your requirement */
+}
+
+.login, .signup {
+  width: 30%; /* adjust this value to give them your desired width */
+  margin: 0 2%; /* adjust this value to control the space between them */
+}

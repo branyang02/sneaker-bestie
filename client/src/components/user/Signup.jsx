@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import React, { useState } from "react";
 import "@/assets/styles/login.css"; // Import your styles here
-import { userLogin } from "@/api/api"; // Import userLogin instead of userSignup
+import { userSignup } from "@/api/api"; // Import userLogin instead of userSignup
 
-function Login() {
+function Signup() {
   const {
     register,
     handleSubmit,
@@ -14,7 +14,7 @@ function Login() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await userLogin({
+      const response = await userSignup({
         // use userLogin instead of userSignup
         email: data.email,
         password: data.password,
@@ -31,8 +31,8 @@ function Login() {
 
   return (
     <>
-      <div className="login-container">
-        <h2>Login</h2>
+      <div className="signup-container">
+        <h2>Register</h2>
         {/* Display the error message */}
         {errorMessage && (
           <div className="error-message">{errorMessage}</div>
@@ -53,7 +53,15 @@ function Login() {
             placeholder="Enter your password"
           />
           {errors.password && <span>This field is required</span>}
-          <input type="submit" value="Login" />
+          <label htmlFor="password">Confirm Password</label>
+          <input
+            id="password"
+            type="password"
+            {...register("password", { required: true })}
+            placeholder="Enter your password again"
+          />
+          {errors.password && <span>This field is required</span>}
+          <input type="submit" value="Signup" />
         </form>
       </div>
       <div></div>
@@ -61,4 +69,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signup;

@@ -30,7 +30,7 @@ body {
 
 
 .slideshow-container {
-  padding-top: 70px; /* Or however much padding you want */
+  padding-top: 0px; /* Or however much padding you want */
 }
 
 .open-pane-button {
@@ -40,4 +40,29 @@ body {
   border: none; /* This removes the border */
   background: transparent; /* This makes the button background transparent */
   cursor: pointer; /* This changes the cursor to a hand when hovering over the button */
+}
+
+.introduction-container {
+  max-width: 904px;
+  margin: 0 auto; /* This centers the container on the page */
+  padding: 20px;
+  text-align: justify; /* This makes the text align to both the left and right sides */
+  margin-top: 40px;
+  margin-bottom: -30px;
+}
+
+.introduction-container h2 {
+  color: #333;
+  font-size: 2em;
+  margin-bottom: 20px; /* This gives a little space below the heading */
+  text-align: center; /* This centers the text */
+
+}
+
+.introduction-container p {
+  color: #666;
+  font-size: 1.2em;
+  line-height: 1.6; /* This increases the space between lines of text */
+  margin-bottom: 20px; /* This gives a little space below the heading */
+
 }
