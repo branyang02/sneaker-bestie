@@ -18,40 +18,18 @@ const SlideShow = () => {
 
   return (
     <Slide
-      eautoplay={true}
+      autoplay={true}
       infinite={true}
       slidesToShow={4}
       duration={0}
-      transitionDuration={5000}
+      transitionDuration={1000}
       pauseOnHover={true}
     >
-      <div className="each-slide-effect">
-        <div style={{ backgroundImage: `url(${images[0]})` }}></div>
-      </div>
-      <div className="each-slide-effect">
-        <div style={{ backgroundImage: `url(${images[1]})` }}></div>
-      </div>
-      <div className="each-slide-effect">
-        <div style={{ backgroundImage: `url(${images[2]})` }}></div>
-      </div>
-      <div className="each-slide-effect">
-        <div style={{ backgroundImage: `url(${images[3]})` }}></div>
-      </div>
-      <div className="each-slide-effect">
-        <div style={{ backgroundImage: `url(${images[4]})` }}></div>
-      </div>
-      <div className="each-slide-effect">
-        <div style={{ backgroundImage: `url(${images[5]})` }}></div>
-      </div>
-      <div className="each-slide-effect">
-        <div style={{ backgroundImage: `url(${images[6]})` }}></div>
-      </div>
-      <div className="each-slide-effect">
-        <div style={{ backgroundImage: `url(${images[7]})` }}></div>
-      </div>
-      <div className="each-slide-effect">
-        <div style={{ backgroundImage: `url(${images[8]})` }}></div>
-      </div>
+      {images.map((image, index) => (
+        <div key={index} className="each-slide-effect">
+          <div style={{ backgroundImage: `url(${image})` }}></div>
+        </div>
+      ))}
     </Slide>
   );
 };

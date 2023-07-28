@@ -1,36 +1,27 @@
 import "./assets/styles/App.css";
+import "boxicons/css/boxicons.min.css";
+import "@/assets/styles/app.scss";
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import SneakersList from "./components/SneakersList";
-import Signup from "./components/SignUp";
-import Home from "./components/home_page/Home";
+import SidebarLayout from "@/components/home_page/SideBarLayout";
+import Home from "@/components/home_page/Home";
+
+const Hi = () => <div>Hi</div>;
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <div className="App">
-        {/* <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/signup">Signup</Link>
-            </li>
-            <li>
-              <Link to="/sneakers">Sneakers List</Link>
-            </li>
-          </ul>
-        </nav> */}
-
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/sneakers" element={<SneakersList />} />
+            <Route index element={<Home />} />
+            <Route path="/started" element={<Hi />} />
+            <Route path="/calendar" element={<Hi />} />
+            <Route path="/user" element={<Hi />} />
+            <Route path="/order" element={<Hi />} />
         </Routes>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 

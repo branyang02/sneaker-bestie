@@ -9,7 +9,7 @@ function Home() {
   return (
     <>
       <div className="home-container">
-        <h1>Welcome to our website</h1>
+        <h1>Welcome to Sneaker Bestie</h1>
         <p>Navigate to Signup or Sneakers List from the navigation above</p>
         <button onClick={() => setIsPaneOpen(true)}>Open Pane</button>
       </div>
