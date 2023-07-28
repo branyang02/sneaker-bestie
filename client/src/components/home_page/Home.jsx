@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "@/assets/styles/Home.css";
 import SlideShow from "./SlideShow";
 import LeftPane from "./LeftPane";
+import "boxicons";
 
 function Home() {
   const [isPaneOpen, setIsPaneOpen] = useState(false);
@@ -10,8 +11,13 @@ function Home() {
     <>
       <div className="home-container">
         <h1>Welcome to Sneaker Bestie</h1>
-        <p>Navigate to Signup or Sneakers List from the navigation above</p>
-        <button onClick={() => setIsPaneOpen(true)}>Open Pane</button>
+        <p>Navigate the menu to explore features</p>
+        <button
+          className="open-pane-button"
+          onClick={() => setIsPaneOpen(true)}
+        >
+          <box-icon name="menu" size="lg"></box-icon>
+        </button>
       </div>
       <div className="slideshow-container">
         <SlideShow />

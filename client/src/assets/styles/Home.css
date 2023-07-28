@@ -13,6 +13,8 @@ body {
   padding: 50px;
   background-color: #f4f4f4;
   width: 100%;
+  position: relative;
+
   /* height: 100vh;  */
 }
 
@@ -29,4 +31,13 @@ body {
 
 .slideshow-container {
   padding-top: 70px; /* Or however much padding you want */
+}
+
+.open-pane-button {
+  position: absolute;
+  top: 50px;
+  left: 40px;
+  border: none; /* This removes the border */
+  background: transparent; /* This makes the button background transparent */
+  cursor: pointer; /* This changes the cursor to a hand when hovering over the button */
 }
