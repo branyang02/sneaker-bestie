@@ -4,14 +4,15 @@ import SlideShow from "./SlideShow";
 import LeftPane from "./LeftPane";
 import "boxicons";
 
+import Banner from "./Banner";
+
 function Home() {
   const [isPaneOpen, setIsPaneOpen] = useState(false);
 
   return (
     <>
       <div className="home-container">
-        <h1>Welcome to Sneaker Bestie</h1>
-        <p>Navigate the menu to explore features</p>
+        <Banner />
         <button
           className="open-pane-button"
           onClick={() => setIsPaneOpen(true)}
