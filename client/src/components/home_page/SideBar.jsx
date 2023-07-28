@@ -9,16 +9,16 @@ const sidebarNavItems = [
     to: "/",
     section: "",
   },
+  // {
+  //   display: "Getting Started",
+  //   icon: <i className="bx bx-star"></i>,
+  //   to: "/started",
+  //   section: "started",
+  // },
   {
-    display: "Getting Started",
-    icon: <i className="bx bx-star"></i>,
-    to: "/started",
-    section: "started",
-  },
-  {
-    display: "Calendar",
-    icon: <i className="bx bx-calendar"></i>,
-    to: "/calendar",
+    display: "Browse All",
+    icon: <i className="bx bx-briefcase"></i>,
+    to: "/browse-all",
     section: "calendar",
   },
   {
@@ -27,12 +27,12 @@ const sidebarNavItems = [
     to: "/user",
     section: "user",
   },
-  {
-    display: "Orders",
-    icon: <i className="bx bx-receipt"></i>,
-    to: "/order",
-    section: "order",
-  },
+  // {
+  //   display: "Orders",
+  //   icon: <i className="bx bx-receipt"></i>,
+  //   to: "/order",
+  //   section: "order",
+  // },
 ];
 
 const Sidebar = () => {
