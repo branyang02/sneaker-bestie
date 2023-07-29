@@ -69,8 +69,8 @@ router.post("/add-view-history", checkAuth, (req, res, next) => {
 });
 
 // VIEW ALL VIEW HISTORIES GIVEN USER
-router.get("/all-view-history", checkAuth, (req, res, next) => {
-  const userID = req.user.userId;
+router.get("/all-view-history/:userID", (req, res, next) => {
+  const userID = req.params.userID;
   ViewHistory.findOne({ userID: userID })
     .populate({
       path: "viewedSneakers",
