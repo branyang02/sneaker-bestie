@@ -11,12 +11,16 @@ class ContentFilter:
         # Get user view history from the server
         try:
             response = requests.get(
-                self.server_address + f"/all-view-history/{self.user_id}"
+                self.server_address + f"/view-history/all-view-history/{self.user_id}"
             )
             response.raise_for_status()
             user_view_history = response.json()
             print("This is the user view history: ", user_view_history)
-            return [sneaker["$oid"] for sneaker in user_view_history["viewedSneakers"]]
+            print("list: ", user_view_history["viewHistory"]["viewedSneakers"])
+            return [
+                sneaker["_id"]
+                for sneaker in user_view_history["viewHistory"]["viewedSneakers"]
+            ]
         except requests.exceptions.HTTPError as err:
             print(f"HTTP error occurred: {err}")
             return []

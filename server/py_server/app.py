@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 from recommend import Recommend
 import requests
 import json
-from ContentFiltering import ContentFiltering
+from ContentFiltering import ContentFilter
 
 app = Flask(__name__)
 
@@ -27,8 +27,7 @@ def recommend():
 
     print("This is the User ID: ", user_id)
 
-    ContentFiltering(user_id, port)
-
+    content_filtering = ContentFilter(user_id, port)
 
     # server_address = "http://localhost:{}".format(port)
 
@@ -71,6 +70,7 @@ def recommend():
     #     pass
     # # Recommend
 
+    print(content_filtering.view_history)
 
     return jsonify(
         [
