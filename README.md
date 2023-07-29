@@ -1,6 +1,6 @@
 # Sneaker Recommendation System
 
-<!-- ![Sneaker Finder Demo](https://i.imgur.com/e1HCurX.gif) -->
+![Sneaker Finder Demo](https://i.imgur.com/e1HCurX.gif)
 
 ## Introduction
 
