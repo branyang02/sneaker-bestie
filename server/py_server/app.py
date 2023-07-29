@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify
 from recommend import Recommend
 import requests
 import json
+from ContentFiltering import ContentFiltering
 
 app = Flask(__name__)
 
@@ -23,51 +24,54 @@ def recommend():
 
     data = request.get_json()
     user_id = data.get("userID")
-    token = data.get("token")
 
     print("This is the User ID: ", user_id)
-    print("This is the corresponding token: ", token)
 
-    server_address = "http://localhost:{}".format(port)
+    ContentFiltering(user_id, port)
 
-    # Get user preferences from the database
-    try:
-        response = requests.get(
-            server_address + "/user-preferences/view-preferences",
-            headers={"Authorization": f"Bearer {token}"},
-            params={"userID": user_id},
-        )
-        response.raise_for_status()
-        user_preferences = response.json()
-        print("This is the user preference: ", user_preferences)
-    except requests.exceptions.RequestException as e:
-        print(e)
-        return (
-            jsonify({"error": "Failed to fetch user preferences from Node.js server"}),
-            500,
-        )
 
-    # Get user view history from the database
-    try:
-        response = requests.get(
-            server_address + "/view-history/all-view-history",
-            headers={"Authorization": f"Bearer {token}"},
-            params={"userID": user_id},
-        )
-        response.raise_for_status()
-        user_view_history = response.json()
-        print("This is the user view history: ", user_view_history)
-    except requests.exceptions.RequestException as e:
-        print(e)
-        user_view_history = None
+    # server_address = "http://localhost:{}".format(port)
 
-    if user_view_history is None:
-        # do a simple search based on user preferences
-        pass
-    else:
-        # recommend
-        pass
-    # Recommend
+    # # Get user preferences from the database
+    # try:
+    #     response = requests.get(
+    #         server_address + "/user-preferences/view-preferences",
+    #         headers={"Authorization": f"Bearer {token}"},
+    #         params={"userID": user_id},
+    #     )
+    #     response.raise_for_status()
+    #     user_preferences = response.json()
+    #     print("This is the user preference: ", user_preferences)
+    # except requests.exceptions.RequestException as e:
+    #     print(e)
+    #     return (
+    #         jsonify({"error": "Failed to fetch user preferences from Node.js server"}),
+    #         500,
+    #     )
+
+    # # Get user view history from the database
+    # try:
+    #     response = requests.get(
+    #         server_address + "/view-history/all-view-history",
+    #         headers={"Authorization": f"Bearer {token}"},
+    #         params={"userID": user_id},
+    #     )
+    #     response.raise_for_status()
+    #     user_view_history = response.json()
+    #     print("This is the user view history: ", user_view_history)
+    # except requests.exceptions.RequestException as e:
+    #     print(e)
+    #     user_view_history = None
+
+    # if user_view_history is None:
+    #     # do a simple search based on user preferences
+    #     pass
+    # else:
+    #     # recommend
+    #     pass
+    # # Recommend
+
+
     return jsonify(
         [
             {
