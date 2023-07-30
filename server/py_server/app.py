@@ -34,6 +34,7 @@ def recommend():
 
     # Collaborative Filtering
     collaborative_filtering = CollaborativeFiltering(user_id, port)
+    print(collaborative_filtering.get_all_users_view_history())
 
     return jsonify(
         [
