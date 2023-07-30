@@ -1,6 +1,6 @@
 # Sneaker Recommendation System
 
-![Sneaker Finder Demo](https://i.imgur.com/e1HCurX.gif)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0XJpOJiOq7A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Introduction
 
