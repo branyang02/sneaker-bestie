@@ -16,7 +16,6 @@ const recommendationSchema = mongoose.Schema({
         ref: "Sneaker",
         required: true,
       },
-      score: { type: Number, required: true },
     },
   ],
 });

@@ -4,6 +4,7 @@ from recommend import Recommend
 import requests
 import json
 from ContentFiltering import ContentFilter
+from CollaborativeFiltering import CollaborativeFiltering
 
 app = Flask(__name__)
 
@@ -27,19 +28,22 @@ def recommend():
 
     print("This is the User ID: ", user_id)
 
+    # Content Filtering
     content_filtering = ContentFilter(user_id, port)
+    print(
+        "these are the new recommendations: ", content_filtering.get_recommendations(10)
+    )
 
-    print(content_filtering.get_recommendations(10))
+    # Collaborative Filtering
+    collaborative_filtering = CollaborativeFiltering(user_id, port)
 
     return jsonify(
         [
             {
                 "sneaker_id": "64be7e2bcdaa0bdaa603d329",
-                "score": 0.5,
             },
             {
                 "sneaker_id": "64be7f6fda5bca158b505dd4",
-                "score": 0.4,
             },
         ]
     )
@@ -86,7 +90,6 @@ def recommend():
     # # Recommend
 
     # print(content_filtering.view_history)
-    
 
 
 if __name__ == "__main__":
