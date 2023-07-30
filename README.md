@@ -1,6 +1,10 @@
 # Sneaker Recommendation System
 
-[Link to the video](https://github.com/yourusername/yourrepository/blob/main/path_to_your_video.mp4)
+
+
+https://github.com/branyang02/sneaker-bestie/assets/107154811/8699fcd3-df22-4a81-985f-076d029feaf7
+
+
 
 
 ## Introduction
