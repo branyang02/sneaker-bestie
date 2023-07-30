@@ -34,13 +34,11 @@ router.get("/view-recommendations", checkAuth, (req, res, next) => {
 // GET NEW RECOMMENDATIONS
 router.put("/get-new-recommendations", checkAuth, (req, res, next) => {
   const userID = req.user.userId;
-  const token = req.token;
 
   // HTTP POST REQUEST TO PYTHON FLASK SERVER
   axios
     .post("http://127.0.0.1:5000/recommend", {
       userID: userID,
-      token: token,
     })
     .then((response) => {
       // handle success

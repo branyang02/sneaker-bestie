@@ -22,10 +22,8 @@ def recommend():
     with open("nodemon.json", "r") as f:
         config = json.load(f)
     port = config["env"]["PORT"]
-
     data = request.get_json()
     user_id = data.get("userID")
-
     print("This is the User ID: ", user_id)
 
     # Content Filtering
