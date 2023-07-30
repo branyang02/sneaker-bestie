@@ -29,6 +29,21 @@ def recommend():
 
     content_filtering = ContentFilter(user_id, port)
 
+    print(content_filtering.get_recommendations(10))
+
+    return jsonify(
+        [
+            {
+                "sneaker_id": "64be7e2bcdaa0bdaa603d329",
+                "score": 0.5,
+            },
+            {
+                "sneaker_id": "64be7f6fda5bca158b505dd4",
+                "score": 0.4,
+            },
+        ]
+    )
+
     # server_address = "http://localhost:{}".format(port)
 
     # # Get user preferences from the database
@@ -70,21 +85,8 @@ def recommend():
     #     pass
     # # Recommend
 
-    print(content_filtering.view_history)
-    print(content_filtering.get_recommendations(10))
-
-    return jsonify(
-        [
-            {
-                "sneaker_id": "64be7e2bcdaa0bdaa603d329",
-                "score": 0.5,
-            },
-            {
-                "sneaker_id": "64be7f6fda5bca158b505dd4",
-                "score": 0.4,
-            },
-        ]
-    )
+    # print(content_filtering.view_history)
+    
 
 
 if __name__ == "__main__":

@@ -69,10 +69,50 @@ class ContentFilter:
         print("This is all products: ", all_products)
         scores = []
         for product in all_products:
-            if str(product["_id"]["$oid"]) not in self.view_history:
+            if product["_id"] not in self.view_history:
                 similarity_score = self.calculate_similarity(product)
                 scores.append((product, similarity_score))
 
         # Sort products based on the similarity score and return the top 'limit' products
         scores.sort(key=lambda x: x[1], reverse=True)
         return [product for product, score in scores[:limit]]
+
+
+# [
+#     {
+#         "productAttributes": {
+#             "gender": "women",
+#             "season": "SS21",
+#             "releaseDate": "2017-09-14T00:00:00.000Z",
+#             "retailPrice": 456,
+#             "colorway": "String/Black-Villain Red-Neptune Green",
+#             "color": "purple",
+#         },
+#         "_id": "64be7e2bcdaa0bdaa603d329",
+#         "productId": "bf364c53-eb77-4522-955c-6a6ce952cc6f",
+#         "urlKey": "purple-hand-bag-leather",
+#         "styleId": "BY9109",
+#         "productType": "handbags",
+#         "title": "Gucci Duchessa Boston Bag",
+#         "brand": "Nike",
+#         "__v": 0,
+#     },
+#     {
+#         "productAttributes": {
+#             "gender": "women",
+#             "season": "SS21",
+#             "releaseDate": "2017-09-14T00:00:00.000Z",
+#             "retailPrice": 456,
+#             "colorway": "String/Black-Villain Red-Neptune Green",
+#             "color": "purple",
+#         },
+#         "_id": "64be7f6fda5bca158b505dd4",
+#         "productId": "bf364c53-eb77-4522-955c-6a6ce952cc6f123",
+#         "urlKey": "purple-hand-bag-leather",
+#         "styleId": "BY9109",
+#         "productType": "handbags",
+#         "title": "Gucci Duchessa Boston Bag",
+#         "brand": "Nike",
+#         "__v": 0,
+#     },
+# ]
