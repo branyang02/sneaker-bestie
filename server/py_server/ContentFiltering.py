@@ -24,11 +24,24 @@ class ContentFilter:
         except requests.exceptions.HTTPError as err:
             print(f"HTTP error occurred: {err}")
             return []
+    
+    def _get_sneaker_details(self, sneaker_id):
+        try:
+            response = requests.get(
+                self.server_address + f"/sneakers/view-sneaker/{sneaker_id}"
+            )
+            response.raise_for_status()
+            sneaker_details = response.json()
+            return sneaker_details
+        except requests.exceptions.HTTPError as err:
+            print(f"HTTP error occurred: {err}")
+            return []
 
     def calculate_similarity(self, product):
         score = 0
         # Assuming 'viewedSneakers' in self.view_history are full sneaker objects and not just the IDs
-        for viewed_sneaker in self.view_history:
+        for sneaker_id in self.view_history:
+            viewed_sneaker = self._get_sneaker_details(sneaker_id)
             if viewed_sneaker["brand"] == product["brand"]:
                 score += 1
             if viewed_sneaker["productType"] == product["productType"]:
@@ -76,3 +89,43 @@ class ContentFilter:
         # Sort products based on the similarity score and return the top 'limit' products
         scores.sort(key=lambda x: x[1], reverse=True)
         return [product for product, score in scores[:limit]]
+
+
+[
+    {
+        "productAttributes": {
+            "gender": "women",
+            "season": "SS21",
+            "releaseDate": "2017-09-14T00:00:00.000Z",
+            "retailPrice": 456,
+            "colorway": "String/Black-Villain Red-Neptune Green",
+            "color": "purple",
+        },
+        "_id": "64be7e2bcdaa0bdaa603d329",
+        "productId": "bf364c53-eb77-4522-955c-6a6ce952cc6f",
+        "urlKey": "purple-hand-bag-leather",
+        "styleId": "BY9109",
+        "productType": "handbags",
+        "title": "Gucci Duchessa Boston Bag",
+        "brand": "Nike",
+        "__v": 0,
+    },
+    {
+        "productAttributes": {
+            "gender": "women",
+            "season": "SS21",
+            "releaseDate": "2017-09-14T00:00:00.000Z",
+            "retailPrice": 456,
+            "colorway": "String/Black-Villain Red-Neptune Green",
+            "color": "purple",
+        },
+        "_id": "64be7f6fda5bca158b505dd4",
+        "productId": "bf364c53-eb77-4522-955c-6a6ce952cc6f123",
+        "urlKey": "purple-hand-bag-leather",
+        "styleId": "BY9109",
+        "productType": "handbags",
+        "title": "Gucci Duchessa Boston Bag",
+        "brand": "Nike",
+        "__v": 0,
+    },
+]

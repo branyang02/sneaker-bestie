@@ -102,6 +102,17 @@ router.post("/login", (req, res, next) => {
     .catch(utilFunctions.throwError(res));
 });
 
+router.get("/all-users", (req, res, next) => {
+  User.find()
+    .exec()
+    .then((users) => {
+      res.status(200).json({
+        users,
+      });
+    })
+    .catch(utilFunctions.throwError(res));
+});
+
 // DELETE USER
 router.delete("/delete", checkAuth, (req, res, next) => {
   const userID = req.user.userId;
