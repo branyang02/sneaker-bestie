@@ -1,6 +1,7 @@
 # Sneaker Recommendation System
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/0XJpOJiOq7A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+[Link to the video](https://github.com/yourusername/yourrepository/blob/main/path_to_your_video.mp4)
+
 
 ## Introduction
 
