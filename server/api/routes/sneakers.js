@@ -99,23 +99,11 @@ router.post("/add-sneaker", async (req, res, next) => {
 // VIEW ALL SNEAKERS
 router.get("/view-all", (req, res, next) => {
   Sneaker.find()
-    .select("productType title brand")
     .exec()
     .then((docs) => {
       const response = {
         count: docs.length,
-        sneakers: docs.map((doc) => {
-          return {
-            productId: doc.productId,
-            productType: doc.productType,
-            title: doc.title,
-            brand: doc.brand,
-            request: {
-              type: "GET",
-              url: `http://localhost:${process.env.PORT}/sneakers/view-sneaker/${doc._id}`,
-            },
-          };
-        }),
+        sneakers: docs,
       };
       res.status(200).json(response); // display to user
     })

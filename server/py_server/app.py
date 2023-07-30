@@ -71,6 +71,7 @@ def recommend():
     # # Recommend
 
     print(content_filtering.view_history)
+    print(content_filtering.get_recommendations(10))
 
     return jsonify(
         [
