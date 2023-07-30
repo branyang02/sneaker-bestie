@@ -18,8 +18,6 @@ class CollaborativeFiltering:
             )
             response.raise_for_status()
             user_view_history = response.json()
-            # print("This is the user view history: ", user_view_history)
-            # print("list: ", user_view_history["viewHistory"]["viewedSneakers"])
             return [
                 sneaker["_id"]
                 for sneaker in user_view_history["viewHistory"]["viewedSneakers"]
@@ -35,11 +33,11 @@ class CollaborativeFiltering:
             all_users = response.json()
             all_users_view_history = {}
             for user in all_users["users"]:
-                print(user["_id"])
+                # print(user["_id"])
                 all_users_view_history[user["_id"]] = self.get_user_view_history(
                     user["_id"]
                 )
-            print(all_users_view_history)
+            return all_users_view_history
         except requests.exceptions.HTTPError as err:
             print(f"HTTP error occurred: {err}")
             return []
