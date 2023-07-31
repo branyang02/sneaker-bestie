@@ -49,7 +49,8 @@ Here's a step-by-step guide to setting up:
 4. Activate your Conda environment `conda activate SneakerBestie`
 5. Start the Node.js server: Use the command `npm start`
 6. Start the Flask server: Use the command `flask run`
-7. To access the system, open your web browser and visit `http://localhost:5173`
+7. Start the Vite server: Use the command `npm run dev`
+8. To access the system, open your web browser and visit `http://localhost:5173`
 
 Now, you're all set to explore and use the sneaker recommendation system!
 
