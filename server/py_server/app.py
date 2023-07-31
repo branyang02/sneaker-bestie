@@ -34,8 +34,12 @@ def recommend():
 
     # Collaborative Filtering
     collaborative_filtering = CollaborativeFiltering(user_id, port)
-    print(collaborative_filtering.get_all_users_view_history())
+    print("all user history: ", collaborative_filtering.all_user_view_history)
+    print("user item matrix: ", collaborative_filtering.user_item_matrix)
 
+    print("recommendation: ", collaborative_filtering.get_recommendations())
+    print("-------------------- ------------------- -------------------")
+    print(collaborative_filtering.create_tf_dataset())
     return jsonify(
         [
             {
