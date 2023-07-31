@@ -4,9 +4,9 @@ https://github.com/branyang02/sneaker-bestie/assets/107154811/8699fcd3-df22-4a81
 
 ## Introduction
 
-This is a personal sneaker recommendation system built with an array of technologies to provide the best user experience and personalized recommendations. The recommendation engine is powered by both collaborative and content-based filtering, along with suggestions from ChatGPT.
+Welcome to the tailor-made sneaker suggestion platform, meticulously crafted with a suite of technologies to ensure an outstanding and individualized user experience. Our recommendation engine utilizes the combined strengths of collaborative and content-based filtering methods, all enhanced by deep learning techniques with the aid of Tensorflow Recommenders.
 
-The system is designed to understand the user's preferences and suggest sneakers that match their taste. Whether you're a sneaker enthusiast looking for the next unique pair to add to your collection, or a casual buyer looking for something comfortable and trendy, our system has you covered.
+Our innovative system is engineered to comprehend the individual preferences of the user and propose sneakers that align with their tastes. It caters to all users: from hardcore sneaker aficionados on the hunt for their next distinct pair to add to an ever-growing collection, to casual shoppers searching for the perfect blend of comfort and style. Rest assured, our platform has all your needs met.
 
 ## Tech Stack
 
@@ -39,14 +39,20 @@ The system is designed to understand the user's preferences and suggest sneakers
 
 ## Setup & Installation
 
-To set up and run this project locally on your machine, you will need Node.js, MongoDB, and Python installed.
+In order to run this project on your local machine, ensure that Node.js, MongoDB, Python, and Conda are installed.
 
-1. Clone this repository: `git clone https://github.com/your_username/repo_name.git`
-2. Install Node.js dependencies: `npm install`
-3. Start the Node.js server: `npm start`
-4. Install Python dependencies: `pip install -r requirements.txt`
-5. Start the Flask server: `flask run`
-6. Open your web browser and visit `http://localhost:3000`
+Here's a step-by-step guide to setting up:
+
+1. Clone this repository: Use the command `git clone https://github.com/branyang02/sneaker-bestie.git`
+2. Install Node.js dependencies: Use the command `npm install`
+3. Create and activate your Conda environment `conda env create -f environment.yml`
+4. Activate your Conda environment `conda activate SneakerBestie`
+5. Start the Node.js server: Use the command `npm start`
+6. Start the Flask server: Use the command `flask run`
+7. To access the system, open your web browser and visit `http://localhost:5173`
+
+Now, you're all set to explore and use the sneaker recommendation system!
+
 
 ## Contributing
 
