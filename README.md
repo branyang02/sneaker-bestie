@@ -1,4 +1,4 @@
-# Sneaker Recommendation System
+# Sneaker Bestie: A Sneaker Recommendation System
 
 https://github.com/branyang02/sneaker-bestie/assets/107154811/8699fcd3-df22-4a81-985f-076d029feaf7
 
