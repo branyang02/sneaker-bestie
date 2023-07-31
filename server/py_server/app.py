@@ -5,94 +5,60 @@ import requests
 import json
 from ContentFiltering import ContentFilter
 from CollaborativeFiltering import CollaborativeFiltering
+from TFRS import TFRS
 
 app = Flask(__name__)
 
 
 @app.route("/recommend", methods=["POST"])
 def recommend():
-    """
-    1. Get user preferences from the database
-    2. Get user view history from the database
-    3. Recommend
-    4. Add to recommend collection
-    """
-
     # Read the nodemon.json file
     with open("nodemon.json", "r") as f:
         config = json.load(f)
     port = config["env"]["PORT"]
     data = request.get_json()
     user_id = data.get("userID")
-    print("This is the User ID: ", user_id)
 
+    print("--------------------")
     # Content Filtering
-    content_filtering = ContentFilter(user_id, port)
-    print(
-        "these are the new recommendations: ", content_filtering.get_recommendations(10)
-    )
+    content_filter = ContentFilter(user_id, port)
+    content_filter_recommendations = content_filter.get_recommendations(10)
+    print("Recommendations from Content Filtering \n: ", content_filter_recommendations)
 
+    print("--------------------")
     # Collaborative Filtering
-    collaborative_filtering = CollaborativeFiltering(user_id, port)
-    print("all user history: ", collaborative_filtering.all_user_view_history)
-    print("user item matrix: ", collaborative_filtering.user_item_matrix)
-
-    print("recommendation: ", collaborative_filtering.get_recommendations())
-    print("-------------------- ------------------- -------------------")
-    print(collaborative_filtering.create_tf_dataset())
-    return jsonify(
-        [
-            {
-                "sneaker_id": "64be7e2bcdaa0bdaa603d329",
-            },
-            {
-                "sneaker_id": "64be7f6fda5bca158b505dd4",
-            },
-        ]
+    collab_filter = CollaborativeFiltering(user_id, port)
+    user_item_matrix = collab_filter.user_item_matrix
+    collab_filter_recommendations = collab_filter.get_recommendations()
+    print(
+        "Recommendations from Collaborative Filtering \n: ",
+        collab_filter_recommendations,
     )
 
-    # server_address = "http://localhost:{}".format(port)
+    # print("--------------------")
+    # Deep Learning Recommendation
+    # tfrs = TFRS(user_item_matrix)
+    # tfrs.train(epochs=10)
+    # tfrs_recommendations = tfrs.get_recommendations(user_id, n=10)
+    # print("TFRS recommendations: ", tfrs_recommendations)
 
-    # # Get user preferences from the database
-    # try:
-    #     response = requests.get(
-    #         server_address + "/user-preferences/view-preferences",
-    #         headers={"Authorization": f"Bearer {token}"},
-    #         params={"userID": user_id},
-    #     )
-    #     response.raise_for_status()
-    #     user_preferences = response.json()
-    #     print("This is the user preference: ", user_preferences)
-    # except requests.exceptions.RequestException as e:
-    #     print(e)
-    #     return (
-    #         jsonify({"error": "Failed to fetch user preferences from Node.js server"}),
-    #         500,
-    #     )
+    # Combine recommendations
+    recommendations, rec_set = [], set()
+    for sneaker_id in content_filter_recommendations:
+        if sneaker_id not in rec_set:
+            rec_set.add(sneaker_id)
+            recommendations.append({"sneaker_id": sneaker_id})
+    for sneaker_id in collab_filter_recommendations:
+        if sneaker_id not in rec_set:
+            rec_set.add(sneaker_id)
+            recommendations.append({"sneaker_id": sneaker_id})
+    # for sneaker_id in tfrs_recommendations:
+    #     recommendations.append({"sneaker_id": sneaker_id})
 
-    # # Get user view history from the database
-    # try:
-    #     response = requests.get(
-    #         server_address + "/view-history/all-view-history",
-    #         headers={"Authorization": f"Bearer {token}"},
-    #         params={"userID": user_id},
-    #     )
-    #     response.raise_for_status()
-    #     user_view_history = response.json()
-    #     print("This is the user view history: ", user_view_history)
-    # except requests.exceptions.RequestException as e:
-    #     print(e)
-    #     user_view_history = None
+    print("--------------------")
+    print("combined recommendations: \n", recommendations)
 
-    # if user_view_history is None:
-    #     # do a simple search based on user preferences
-    #     pass
-    # else:
-    #     # recommend
-    #     pass
-    # # Recommend
-
-    # print(content_filtering.view_history)
+    return jsonify(recommendations)
 
 
 if __name__ == "__main__":

@@ -52,7 +52,7 @@ class CollaborativeFiltering:
             for sneaker_id in view_history
         )
         user_item_matrix = pd.DataFrame(
-            0, index=self.all_user_view_history.keys(), columns=unique_sneaker_ids
+            0, index=self.all_user_view_history.keys(), columns=list(unique_sneaker_ids)
         )
 
         # Fill up the matrix with actual view counts
@@ -124,28 +124,3 @@ class CollaborativeFiltering:
             ].index.tolist()
 
         return recommended_items
-
-    def create_tf_dataset(self):
-        # First, we melt the user-item matrix to long format
-        user_item_df = self.user_item_matrix.reset_index().melt(
-            id_vars="index", value_name="views"
-        )
-        user_item_df.columns = ["user_id", "item_id", "views"]
-
-        # We only keep rows where there was at least one view
-        user_item_df = user_item_df[user_item_df["views"] > 0]
-
-        # We convert our DataFrame to a TensorFlow dataset
-        dataset = tf.data.Dataset.from_tensor_slices(
-            {
-                "user_id": user_item_df["user_id"].values.astype(
-                    str
-                ),  # TFRS expects both user ids and item ids to be strings
-                "item_id": user_item_df["item_id"].values.astype(str),
-                "views": user_item_df["views"].values.astype(
-                    np.float32
-                ),  # Weights should be floats
-            }
-        )
-
-        return dataset
