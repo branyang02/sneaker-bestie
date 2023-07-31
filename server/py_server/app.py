@@ -1,6 +1,5 @@
 # app.py
 from flask import Flask, request, jsonify
-from recommend import Recommend
 import requests
 import json
 from ContentFiltering import ContentFilter
