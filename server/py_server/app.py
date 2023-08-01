@@ -20,7 +20,9 @@ def recommend():
 
     print("--------------------")
     # Content Filtering
+    print("performing content filtering...")
     content_filter = ContentFilter(user_id, port)
+    print("calculating similarity...")
     content_filter_recommendations = content_filter.get_recommendations(10)
     print("Recommendations from Content Filtering \n: ", content_filter_recommendations)
 
@@ -34,12 +36,12 @@ def recommend():
         collab_filter_recommendations,
     )
 
-    # print("--------------------")
+    print("--------------------")
     # Deep Learning Recommendation
-    # tfrs = TFRS(user_item_matrix)
-    # tfrs.train(epochs=10)
-    # tfrs_recommendations = tfrs.get_recommendations(user_id, n=10)
-    # print("TFRS recommendations: ", tfrs_recommendations)
+    tfrs = TFRS(user_item_matrix)
+    tfrs.train(epochs=10)
+    tfrs_recommendations = tfrs.get_recommendations(user_id, n=10)
+    print("TFRS recommendations: ", tfrs_recommendations)
 
     # Combine recommendations
     recommendations, rec_set = [], set()
@@ -51,8 +53,8 @@ def recommend():
         if sneaker_id not in rec_set:
             rec_set.add(sneaker_id)
             recommendations.append({"sneaker_id": sneaker_id})
-    # for sneaker_id in tfrs_recommendations:
-    #     recommendations.append({"sneaker_id": sneaker_id})
+    for sneaker_id in tfrs_recommendations:
+        recommendations.append({"sneaker_id": sneaker_id})
 
     print("--------------------")
     print("combined recommendations: \n", recommendations)

@@ -68,7 +68,7 @@ class CollaborativeFiltering:
         if kind == "item":
             return cosine_similarity(matrix.T)
 
-    def get_recommendations(self, kind="user"):
+    def get_recommendations(self, kind="user", num_recommendations=10):
         similarity_matrix = self.calculate_similarity(self.user_item_matrix, kind=kind)
 
         if kind == "user":
@@ -123,4 +123,4 @@ class CollaborativeFiltering:
                 ~sorted_item_similarities.index.isin(user_items)
             ].index.tolist()
 
-        return recommended_items
+        return recommended_items[:num_recommendations]

@@ -105,4 +105,5 @@ class TFRS:
 
         # Get recommendations
         _, items = index(tf.constant([user_id] * n))
-        return items[0, :n].numpy()
+        byte_rec = items[0, :n].numpy()
+        return [item.decode("utf-8") for item in byte_rec]

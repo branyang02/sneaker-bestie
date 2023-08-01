@@ -1,4 +1,5 @@
 import requests
+import random
 
 
 class ContentFilter:
@@ -10,20 +11,23 @@ class ContentFilter:
     def get_user_view_history(self):
         # Get user view history from the server
         try:
+            print("getting user view history...")
             response = requests.get(
                 self.server_address + f"/view-history/all-view-history/{self.user_id}"
             )
             response.raise_for_status()
             user_view_history = response.json()
-            # print("This is the user view history: ", user_view_history)
-            # print("list: ", user_view_history["viewHistory"]["viewedSneakers"])
-            return [
-                sneaker["_id"]
-                for sneaker in user_view_history["viewHistory"]["viewedSneakers"]
-            ]
+            print("This is the user view history: ", user_view_history)
+            print("list: ", user_view_history["viewHistory"]["viewedSneakers"])
+            return set(
+                [
+                    sneaker["_id"]
+                    for sneaker in user_view_history["viewHistory"]["viewedSneakers"]
+                ]
+            )
         except requests.exceptions.HTTPError as err:
             print(f"HTTP error occurred: {err}")
-            return []
+            return set()
 
     def _get_sneaker_details(self, sneaker_id):
         try:
@@ -40,7 +44,7 @@ class ContentFilter:
     def calculate_similarity(self, product):
         score = 0
         # Assuming 'viewedSneakers' in self.view_history are full sneaker objects and not just the IDs
-        for sneaker_id in self.view_history:
+        for sneaker_id in random.sample(self.view_history, 10):
             viewed_sneaker = self._get_sneaker_details(sneaker_id)
             if viewed_sneaker["brand"] == product["brand"]:
                 score += 1
@@ -81,7 +85,8 @@ class ContentFilter:
             return []
         # print("This is all products: ", all_products)
         scores = []
-        for product in all_products:
+        for product in random.sample(all_products, 50):
+            print(product["_id"])
             if product["_id"] not in self.view_history:
                 similarity_score = self.calculate_similarity(product)
                 scores.append((product, similarity_score))
