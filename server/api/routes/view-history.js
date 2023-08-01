@@ -12,11 +12,12 @@ const checkAuth = require("../middleware/check-auth");
 /*
     example request body:
       {
+        "userId": "5f9d3b4b9c6c9b1c1c9c9c9c",
         "product_id": "bf364c53-eb77-4522-955c-6a6ce952cc6f"
       }
   */
-router.post("/add-view-history", checkAuth, (req, res, next) => {
-  const userID = req.user.userId;
+router.post("/add-view-history", (req, res, next) => {
+  const userID = req.body.userId;
   const productId = req.body.product_id;
 
   ViewHistory.findOne({ userID: userID })
