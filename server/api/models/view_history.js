@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const viewHistorySchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
   userID: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true, unique: true },
-  viewedSneakers: [{ type: mongoose.Schema.Types.ObjectId, ref: "Sneaker", required: true }],
+  viewedSneakers: [{ type: mongoose.Schema.Types.ObjectId, ref: "Sneaker", required: true, unique: true }],
 });
 
 // convert Schema to a Model
