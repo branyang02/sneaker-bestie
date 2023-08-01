@@ -207,6 +207,5 @@ dist-ssr
 *.sln
 *.sw?
 server/api/utils/add_sneak_helper.py
-.gitignore
 server/api/utils/add_sneaker.py
-.gitignore
+server/api/utils/add_view_history.py
