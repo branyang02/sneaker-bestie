@@ -206,3 +206,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+server/api/utils/add_sneak_helper.py
+.gitignore
+server/api/utils/add_sneaker.py
+.gitignore
