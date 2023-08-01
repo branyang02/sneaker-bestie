@@ -209,3 +209,4 @@ dist-ssr
 server/api/utils/add_sneak_helper.py
 server/api/utils/add_sneaker.py
 server/api/utils/add_view_history.py
+server/api/utils/add_sneaker_chatgpt.py
