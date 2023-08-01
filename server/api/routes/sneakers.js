@@ -6,6 +6,78 @@ const fetch = require("node-fetch");
 
 const Sneaker = require("../models/sneaker");
 
+// ADD SNEAKER TO DATABASE (NO SERACH)
+/*
+  example request body:
+  {
+    "productId": "bf364c53-eb77-4522-955c-6a6ce952cc6f",
+    "urlKey": "purple-hand-bag-leather",
+    "styleId": "BY9109",
+    "productType": "handbags",
+    "title": "Gucci Duchessa Boston Bag",
+    "brand": "Nike",
+    "productAttributes": {
+      "gender": "women",
+      "season": "SS21",
+      "releaseDate": "2017-09-14",
+      "retailPrice": 456,
+      "colorway": "String/Black-Villain Red-Neptune Green",
+      "color": "purple"
+    }
+}
+*/
+router.post("/add-sneaker-from-data", async (req, res, next) => {
+  const productId = req.body.productId;
+
+  // Check if sneaker with given productId already exists
+  const existingSneaker = await Sneaker.findOne({ productId: productId });
+  if (existingSneaker) {
+    return res.status(409).json({
+      message: "A sneaker with the same productId already exists.",
+    });
+  }
+
+  // create a sneaker object
+  const sneaker = new Sneaker({
+    _id: new mongoose.Types.ObjectId(),
+    productId: req.body.productId,
+    urlKey: req.body.urlKey,
+    styleId: req.body.styleId,
+    productType: req.body.productType,
+    title: req.body.title,
+    brand: req.body.brand,
+    productAttributes: {
+      gender: req.body.productAttributes.gender,
+      season: req.body.productAttributes.season,
+      releaseDate: req.body.productAttributes.releaseDate,
+      retailPrice: req.body.productAttributes.retailPrice,
+      colorway: req.body.productAttributes.colorway,
+      color: req.body.productAttributes.color,
+    },
+  });
+
+  // save sneaker to database
+  sneaker
+    .save()
+    .then((result) => {
+      // console.log(result);
+      res.status(201).json({
+        message: "Added sneaker successfully",
+        addedSneaker: {
+          productId: result.productId,
+          productType: result.productType,
+          title: result.title,
+          brand: result.brand,
+          request: {
+            type: "GET",
+            url: `http://localhost:${process.env.PORT}/sneakers/view-sneaker/${result._id}`,
+          },
+        },
+      });
+    })
+    .catch(utilFunctions.throwError(res));
+});
+
 // ADD SNEAKER TO DATABASE
 /*
   example request body:
